@@ -12,35 +12,35 @@ var jwt = require('jsonwebtoken')
 router.use(jsend.middleware);
 
 router.post("/login", jsonParser, async (req, res, next) => {
-    const { email, password } = req.body;
-    if (email == null) {
-      return res.jsend.fail({"email": "Email is required."});
-    }
-    if (password == null) {
-      return res.jsend.fail({"password": "Password is required."});
-    }
-    userService.getOne(email).then((data) => {
-        if(data === null) {
+  const { email, password } = req.body;
+  if (email == null) {
+    return res.jsend.fail({"email": "Email is required."});
+  }
+  if (password == null) {
+    return res.jsend.fail({"password": "Password is required."});
+  }
+  userService.getOne(email).then((data) => {
+      if(data === null) {
+          return res.jsend.fail({"result": "Incorrect email or password"});
+      }
+      crypto.pbkdf2(password, data.salt, 310000, 32, 'sha256', function(err, hashedPassword) {
+        if (err) { return cb(err); }
+        if (!crypto.timingSafeEqual(data.encryptedPassword, hashedPassword)) {
             return res.jsend.fail({"result": "Incorrect email or password"});
         }
-        crypto.pbkdf2(password, data.Salt, 310000, 32, 'sha256', function(err, hashedPassword) {
-          if (err) { return cb(err); }
-          if (!crypto.timingSafeEqual(data.EncryptedPassword, hashedPassword)) {
-              return res.jsend.fail({"result": "Incorrect email or password"});
-          }
-          let token;
-          try {
-            token = jwt.sign(
-              { id: data.id, email: data.Email },
-              process.env.TOKEN_SECRET,
-              { expiresIn: "1h" }
-            );
-          } catch (err) {
-            res.jsend.error("Something went wrong with creating JWT token")
-          }
-          res.jsend.success({"result": "You are logged in", "id": data.id, email: data.Email, token: token});
-        });
-    });
+        let token;
+        try {
+          token = jwt.sign(
+            { id: data.id, email: data.email },
+            process.env.TOKEN_SECRET,
+            { expiresIn: "1h" }
+          );
+        } catch (err) {
+          res.jsend.error("Something went wrong with creating JWT token")
+        }
+        res.jsend.success({"result": "You are logged in", "id": data.id, email: data.email, token: token});
+      });
+  });
 });
 
 router.post("/signup", async (req, res, next) => {
