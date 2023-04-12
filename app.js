@@ -10,6 +10,8 @@ require('dotenv').config();
 var db = require('./models');
 db.sequelize.sync({ force: false });
 var authRouter = require('./routes/auth');
+const todoRouter = require('./routes/todos');
+const categoryRouter = require('./routes/categories');
 
 var app = express();
 
@@ -26,6 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/', authRouter);
 app.use('/users', usersRouter);
+app.use('/todos', todoRouter);
+app.use('/categories', categoryRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
