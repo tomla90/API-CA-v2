@@ -28,15 +28,15 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1];
     if (!token) return res.jsend.fail({ "error": "No token provided" });
-
+  
     try {
-        const user = jwt.verify(token, process.env.TOKEN_SECRET);
-        const category = await categoryService.getOne(req.params.id, user.id);
-        res.jsend.success(category);
+      const user = jwt.verify(token, process.env.TOKEN_SECRET);
+      const category = await categoryService.getOne(req.params.id);
+      res.jsend.success(category);
     } catch (err) {
-        res.jsend.fail({ "error": "Invalid token" });
+      res.jsend.fail({ "error": "Invalid token" });
     }
-});
+  });
 
 router.post("/", jsonParser, async (req, res, next) => {
     const token = req.headers.authorization?.split(' ')[1];

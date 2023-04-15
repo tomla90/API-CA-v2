@@ -9,7 +9,7 @@ var usersRouter = require('./routes/users');
 require('dotenv').config();
 var db = require('./models');
 db.sequelize.sync({ force: false });
-var authRouter = require('./routes/auth');
+const authRouter = require('./routes/auth');
 const todoRouter = require('./routes/todos');
 const categoryRouter = require('./routes/categories');
 
