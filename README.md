@@ -38,12 +38,19 @@ https://documenter.getpostman.com/view/2s93XyTiRt?version=latest
 To run tests, use the command npm test. This will run the tests with Jest.
 
 # Environment Variables
+
 HOST = "localhost"
+
 ADMIN_USERNAME = "admin"
+
 ADMIN_PASSWORD = "P@ssw0rd"
+
 DATABASE_NAME = "myTodo"
+
 DIALECT = "mysql"
+
 PORT = "3000"
+
 TOKEN_SECRET=48dd64ce6db61eb571578ea7be733b8d0fdd63ed8711e606175d35e1eb48349e1e1113fcff850c21ede10233737b4be6d2dfdc99f61ba77feb6f70e9c4d36696
 
 credentials testuser:
