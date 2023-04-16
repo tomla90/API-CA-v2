@@ -9,7 +9,8 @@ MySQL Workbench or a similar MySQL database management tool
 Clone the repository or download the project files to your local machine.
 Navigate to the project root directory in your terminal or command prompt.
 Run npm install to install all the required dependencies.
-Database Setup
+
+### Database Setup
 Open MySQL Workbench or your preferred MySQL database management tool.
 
 Run the following SQL script to create the myTodo database:
