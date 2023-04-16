@@ -49,33 +49,33 @@ email: "test@gmail.com",
 password: "0000"
 
 # Additional Libraries/Packages
-### cookie-parser: Middleware for parsing cookies from the request headers. Version: ~1.4.4
+ cookie-parser: Middleware for parsing cookies from the request headers. Version: ~1.4.4
 
-### debug: A small debugging utility that makes it easier to log information during development. Version: ~2.6.9
+ debug: A small debugging utility that makes it easier to log information during development. Version: ~2.6.9
 
-### dotenv: A package for loading environment variables from the .env file. Version: ^16.0.3
+ dotenv: A package for loading environment variables from the .env file. Version: ^16.0.3
 
-### ejs: Embedded JavaScript templating engine for rendering server-side HTML templates. Version: ^3.1.8
+ ejs: Embedded JavaScript templating engine for rendering server-side HTML templates. Version: ^3.1.8
 
-### express: A web framework for Node.js, used for handling HTTP requests and responses. Version: ^4.18.2
+ express: A web framework for Node.js, used for handling HTTP requests and responses. Version: ^4.18.2
 
-### http-errors: Utility for creating HTTP error objects with status codes and messages. Version: ~1.6.3
+ http-errors: Utility for creating HTTP error objects with status codes and messages. Version: ~1.6.3
 
-### jest: A testing framework for JavaScript, used for writing and running tests. Version: ^29.5.0
+ jest: A testing framework for JavaScript, used for writing and running tests. Version: ^29.5.0
 
-### jsend: A package for formatting API responses in JSend format. Version: ^1.1.0
+ jsend: A package for formatting API responses in JSend format. Version: ^1.1.0
 
-### jsonwebtoken: A package for handling JSON Web Tokens, used for user authentication. Version: ^9.0.0
+ jsonwebtoken: A package for handling JSON Web Tokens, used for user authentication. Version: ^9.0.0
 
-### morgan: HTTP request logger middleware for Node.js, used for logging HTTP requests in the console. Version: ~1.9.1
+ morgan: HTTP request logger middleware for Node.js, used for logging HTTP requests in the console. Version: ~1.9.1
 
-### mysql: A Node.js driver for MySQL, used for connecting to MySQL databases. Version: ^2.18.1
+ mysql: A Node.js driver for MySQL, used for connecting to MySQL databases. Version: ^2.18.1
 
-### mysql2: A fast Node.js MySQL client with a focus on performance, used as a dialect for Sequelize. Version: ^3.1.2
+ mysql2: A fast Node.js MySQL client with a focus on performance, used as a dialect for Sequelize. Version: ^3.1.2
 
-### sequelize: An ORM for Node.js, used for handling database operations. Version: ^6.29.0
+ sequelize: An ORM for Node.js, used for handling database operations. Version: ^6.29.0
 
-### supertest: A testing library for testing HTTP endpoints, used for writing API tests. Version: ^6.3.3
+ supertest: A testing library for testing HTTP endpoints, used for writing API tests. Version: ^6.3.3
 
 # NodeJS Version Used
 This application was developed using Node.js v18.15.0
