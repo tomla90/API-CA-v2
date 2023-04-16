@@ -53,31 +53,35 @@ router.post("/", jsonParser, async (req, res, next) => {
 });
 
 
-router.put("/:id", jsonParser, async (req, res, next) => {
+router.put("/:id?", jsonParser, async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
   if (!token) return res.jsend.fail({ "error": "No token provided" });
 
   try {
       const user = jwt.verify(token, process.env.TOKEN_SECRET);
-      const updatedTodo = await todoService.update(req.params.id, req.body.name, user.id);
+      const id = req.params.id ? parseInt(req.params.id) : null;
+      const { oldName, newName } = req.body;
+      const updatedTodo = await todoService.update(id, oldName, newName, user.id);
       res.jsend.success(updatedTodo);
   } catch (err) {
-      res.jsend.fail({ "error": "Invalid token" });
+      res.jsend.fail({ "error": "Invalid token or input parameters" });
   }
 });
 
 
-router.delete("/:id", async (req, res, next) => {
-    const token = req.headers.authorization?.split(' ')[1];
-    if (!token) return res.jsend.fail({ "error": "No token provided" });
+router.delete("/:id?", jsonParser, async (req, res, next) => {
+  const token = req.headers.authorization?.split(' ')[1];
+  if (!token) return res.jsend.fail({ "error": "No token provided" });
 
-    try {
-        const user = jwt.verify(token, process.env.TOKEN_SECRET);
-        await todoService.delete(req.params.id, user.id);
-        res.jsend.success({ "message": "Todo deleted successfully" });
-    } catch (err) {
-        res.jsend.fail({ "error": "Invalid token" });
-    }
+  try {
+      const user = jwt.verify(token, process.env.TOKEN_SECRET);
+      const id = req.params.id ? parseInt(req.params.id) : null;
+      const { name } = req.body;
+      const deletedTodo = await todoService.delete(id, name, user.id);
+      res.jsend.success(deletedTodo);
+  } catch (err) {
+      res.jsend.fail({ "error": "Invalid token or input parameters" });
+  }
 });
 
 
