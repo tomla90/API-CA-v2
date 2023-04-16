@@ -17,8 +17,11 @@ Run the following SQL script to create the myTodo database:
 CREATE SCHEMA myTodo;
 
 Run the following SQL script to create an admin database user with all privileges:
+
 CREATE USER 'admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'P@ssw0rd';
+
 ALTER USER 'admin'@'localhost' IDENTIFIED WITH mysql_native_password BY 'P@ssw0rd';
+
 GRANT ALL PRIVILEGES ON myTodo.* TO 'admin'@'localhost';
 
 Update the .env file in the project root directory with the correct credentials provided under in the environment variables.
