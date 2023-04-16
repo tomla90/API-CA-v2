@@ -1,10 +1,10 @@
 # REST API - Course Assignment
 # Application Installation and Usage Instructions
-##Prerequisites
+## Prerequisites
 Node.js v18.15.0 or higher
 MySQL Workbench or a similar MySQL database management tool
 
-##Installation
+## Installation
 
 Clone the repository or download the project files to your local machine.
 Navigate to the project root directory in your terminal or command prompt.
@@ -24,7 +24,7 @@ Update the .env file in the project root directory with the correct credentials 
 
 Run the application with the command npm start. Sequelize will create the necessary tables and relationships in the "myTodo" database.
 
-##Usage
+## Usage
 Use Postman or another API testing tool to test the available API endpoints. The server runs on port 3000 by default.
 
 POSTMAN Documentation link:
