@@ -53,21 +53,29 @@ router.post("/", jsonParser, async (req, res, next) => {
 });
 
 
-router.put("/:id?", jsonParser, async (req, res, next) => {
+router.put('/:id?', jsonParser, async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];
-  if (!token) return res.jsend.fail({ "error": "No token provided" });
+  if (!token) return res.jsend.fail({ 'error': 'No token provided' });
 
   try {
-      const user = jwt.verify(token, process.env.TOKEN_SECRET);
-      const id = req.params.id ? parseInt(req.params.id) : null;
-      const { oldName, newName } = req.body;
-      const updatedTodo = await todoService.update(id, oldName, newName, user.id);
-      res.jsend.success(updatedTodo);
-  } catch (err) {
-      res.jsend.fail({ "error": "Invalid token or input parameters" });
+    const user = jwt.verify(token, process.env.TOKEN_SECRET);
+    const id = req.params.id ? parseInt(req.params.id) : null;
+    const { name, oldName, newName } = req.body;
+
+    if (id && name) {
+      const updatedTodo = await todoService.update(id, name, user.id);
+      return res.jsend.success(updatedTodo);
+    } else if (oldName && newName) {
+      const updatedTodo = await todoService.updateByName(oldName, newName, user.id);
+      return res.jsend.success(updatedTodo);
+    } else {
+      throw new Error('Invalid input parameters for updating Todo item.');
+    }
+  } catch (error) {
+    console.error('Error updating todo:', error);
+    res.jsend.fail({ 'error': 'Invalid token or input parameters' });
   }
 });
-
 
 router.delete("/:id?", jsonParser, async (req, res, next) => {
   const token = req.headers.authorization?.split(' ')[1];

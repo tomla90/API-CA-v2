@@ -56,16 +56,23 @@ class TodoService {
           throw error;
         }
       }
-
-      async update(id, oldName, newName, userId) {
-        if (id) {
-            return this.Todo.update({ name: newName }, { where: { id: id, UserId: userId } });
-        } else if (oldName && newName) {
-            return this.Todo.update({ name: newName }, { where: { name: oldName, UserId: userId } });
+      async update(id, name, userId) {
+        if (id && name) {
+          return this.Todo.update({ name }, { where: { id, UserId: userId } });
         } else {
-            throw new Error("Invalid input parameters for updating Todo item.");
+          throw new Error("Invalid input parameters for updating Todo item.");
         }
-    }
+      }
+      
+      async updateByName(oldName, newName, userId) {
+        if (oldName && newName) {
+          return this.Todo.update({ name: newName }, { where: { name: oldName, UserId: userId } });
+        } else {
+          throw new Error("Invalid input parameters for updating Todo item.");
+        }
+      }
+      
+    
     async delete(id, name, userId) {
       if (id) {
           return this.Todo.destroy({ where: { id: id, UserId: userId } });
